@@ -1,45 +1,14 @@
-def gcd(a, b):
-    if b == 0:
-        return a
-    else:
-        return gcd(b, a % b)
-
-
-a = int(input("Введите первое число: "))
-b = int(input("Введите второе число: "))
-
-print("НСД:", gcd(a, b))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-def sum_digits(n):
+def power(a, n):
     if n == 0:
-        return 0
+        return 1
     else:
-        return n % 10 + sum_digits(n // 10)
+        return a * power(a, n - 1)
 
 
-number = int(input("Введите число: "))
-print("Сумма цифр:", sum_digits(number))
+a = int(input("Введите число: "))
+n = int(input("Введите степень: "))
 
-
-
-
+print("Результат:", power(a, n))
 
 
 
@@ -49,17 +18,43 @@ print("Сумма цифр:", sum_digits(number))
 
 
 
-def is_symmetric(lst):
-    if len(lst) <= 1:
+def is_leap(year):
+    if year % 400 == 0:
         return True
-    if lst[0] != lst[-1]:
+    if year % 100 == 0:
         return False
-    return is_symmetric(lst[1:-1])
+    if year % 4 == 0:
+        return True
+    return False
 
 
-numbers = list(map(int, input("Введите числа через пробел: ").split()))
 
-if is_symmetric(numbers):
-    print("Список симметричный")
-else:
-    print("Список не симметричный")
+
+
+
+
+
+
+
+import random
+
+numbers = [random.randint(1, 100) for _ in range(100)]
+
+def find_min_sum(lst, index=0, min_sum=None, min_index=0):
+
+    if index > len(lst) - 10:
+        return min_index
+
+    current_sum = sum(lst[index:index+10])
+
+    if min_sum is None or current_sum < min_sum:
+        min_sum = current_sum
+        min_index = index
+
+    return find_min_sum(lst, index + 1, min_sum, min_index)
+
+
+position = find_min_sum(numbers)
+
+print("Список:", numbers)
+print("Позиция минимальной суммы 10 чисел:", position)
