@@ -1,0 +1,75 @@
+nums = list(map(int, input("Введіть числа через пробіл: ").split()))
+
+total = sum(nums)
+average = total / len(nums)
+
+print("Сума:", total)
+print("Середнє арифметичне:", average)
+
+
+
+
+
+
+
+
+
+
+nums = list(map(int, input("Введіть числа через пробіл: ").split()))
+number = int(input("Введіть число для пошуку: "))
+
+count = nums.count(number)
+
+print("Кількість входжень:", count)
+
+
+
+
+
+
+
+
+
+
+nums = list(map(int, input("Введіть числа через пробіл: ").split()))
+
+total = 0
+
+for n in nums:
+    if n > 0:
+        total += n
+
+print("Сума додатних чисел:", total)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+nums = list(map(int, input("Введіть числа через пробіл: ").split()))
+
+for i in range(len(nums)):
+    if nums[i] % 2 == 0:
+        print(i, end=" ")
+
+
+
+
+
+
+
+
+
+nums = list(map(int, input("Введіть числа через пробіл: ").split()))
+
+unique = list(set(nums))
+
+print("Унікальні елементи:", unique)
