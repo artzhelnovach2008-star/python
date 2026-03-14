@@ -1,0 +1,32 @@
+nums = list(map(int, input("Введіть числа через пробіл: ").split()))
+n = int(input("Введіть N: "))
+
+n = n % len(nums)
+
+result = nums[-n:] + nums[:-n]
+
+print("Зсунутий список:", result)
+
+
+
+
+
+
+
+
+import random
+
+list1 = [random.randint(1, 20) for _ in range(10)]
+list2 = [random.randint(1, 20) for _ in range(10)]
+
+print("Список 1:", list1)
+print("Список 2:", list2)
+
+
+
+
+
+
+
+
+
