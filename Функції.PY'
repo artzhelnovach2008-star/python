@@ -1,0 +1,101 @@
+def show_text():
+    print("\"Don't let the noise of others' opinions")
+    print("    drown out your own inner voice.\"")
+    print("        Steve Jobs")
+
+show_text()
+
+
+
+
+
+
+def show_odd(a, b):
+    for i in range(a, b + 1):
+        if i % 2 != 0:
+            print(i, end=" ")
+
+a = int(input("Введите первое число: "))
+b = int(input("Введите второе число: "))
+
+show_odd(a, b)
+
+
+
+
+
+
+
+
+def draw_line(length, direction, symbol):
+    
+    if direction == "h":   # горизонтальная
+        for i in range(length):
+            print(symbol, end="")
+    
+    elif direction == "v": # вертикальная
+        for i in range(length):
+            print(symbol)
+
+draw_line(5, "h", "*")
+print()
+draw_line(5, "v", "*")
+
+
+
+
+
+def max_of_four(a, b, c, d):
+    return max(a, b, c, d)
+
+print(max_of_four(4, 7, 2, 9))
+
+
+
+
+
+
+
+def is_prime(n):
+
+    if n <= 1:
+        return False
+
+    for i in range(2, n):
+        if n % i == 0:
+            return False
+
+    return True
+
+
+num = int(input("Введите число: "))
+
+if is_prime(num):
+    print("Число простое")
+else:
+    print("Число не простое")
+
+
+
+
+
+
+    def is_lucky(n):
+
+    s = str(n)
+
+    if len(s) != 6:
+        return False
+
+    first = int(s[0]) + int(s[1]) + int(s[2])
+    second = int(s[3]) + int(s[4]) + int(s[5])
+
+    return first == second
+
+
+num = int(input("Введите шестизначное число: "))
+
+if is_lucky(num):
+    print("Число счастливое")
+else:
+    print("Число не счастливое")
