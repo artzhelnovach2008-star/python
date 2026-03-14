@@ -1,0 +1,38 @@
+dictionary = {
+    "hello": "привіт",
+    "world": "світ",
+    "cat": "кіт",
+    "dog": "собака",
+    "book": "книга"
+}
+
+word = input("Введіть слово англійською: ").lower()
+
+if word in dictionary:
+    print("Переклад:", dictionary[word])
+else:
+    print("Слово не знайдено")
+
+
+
+
+
+
+
+
+friends = int(input("Введіть кількість друзів: "))
+
+games = set(input("Введіть ігри, які є у вас (через пробіл): ").split())
+
+for i in range(friends):
+    friend_games = set(input(f"Введіть ігри друга {i+1}: ").split())
+    games = games.intersection(friend_games)
+
+print("Ігри, в які можуть грати всі разом:")
+print(games)
+
+
+
+
+
+
