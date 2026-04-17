@@ -1,0 +1,95 @@
+class Book:
+    def __init__(self, title, authors, year):
+        self.title = title
+        self.authors = authors
+        self.year = year
+
+    def __str__(self):
+        return f"Назва: {self.title}, Автори: {', '.join(self.authors)}, Рік: {self.year}"
+
+
+class Library:
+    def __init__(self, name, address):
+        self.name = name
+        self.address = address
+        self.books = []
+
+    def __str__(self):
+        return f"Бібліотека: {self.name}, Адреса: {self.address}"
+
+    def show_books(self):
+        if len(self.books) == 0:
+            print("Книг немає")
+        else:
+            for book in self.books:
+                print(book)
+
+    def add_book(self, book):
+        self.books.append(book)
+        print("Книгу додано")
+
+    def remove_book(self, title):
+        for book in self.books:
+            if book.title == title:
+                self.books.remove(book)
+                print("Книгу видалено")
+                return
+        print("Книгу не знайдено")
+
+    def search_by_title(self, title):
+        for book in self.books:
+            if book.title == title:
+                print(book)
+                return
+        print("Книгу не знайдено")
+
+    def search_by_author(self, author):
+        found = False
+        for book in self.books:
+            if author in book.authors:
+                print(book)
+                found = True
+        if not found:
+            print("Книг цього автора не знайдено")
+
+
+library = Library("Моя бібліотека", "Одеса")
+
+while True:
+    print("\nМеню:")
+    print("1 - Додати книгу")
+    print("2 - Показати всі книги")
+    print("3 - Видалити книгу")
+    print("4 - Пошук за назвою")
+    print("5 - Пошук за автором")
+    print("0 - Вихід")
+
+    choice = input("Оберіть дію: ")
+
+    if choice == "1":
+        title = input("Назва книги: ")
+        authors = input("Автори (через кому): ").split(",")
+        year = input("Рік публікації: ")
+        book = Book(title, authors, year)
+        library.add_book(book)
+
+    elif choice == "2":
+        library.show_books()
+
+    elif choice == "3":
+        title = input("Введіть назву книги для видалення: ")
+        library.remove_book(title)
+
+    elif choice == "4":
+        title = input("Введіть назву книги: ")
+        library.search_by_title(title)
+
+    elif choice == "5":
+        author = input("Введіть автора: ")
+        library.search_by_author(author)
+
+    elif choice == "0":
+        break
+
+    else:
+        print("Невірний вибір")
