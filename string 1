@@ -1,0 +1,119 @@
+text = input("Введи текст: ")
+
+# считаем предложения по точкам, ! и ?
+count = text.count('.') + text.count('!') + text.count('?')
+
+print("Кількість речень:", count)
+
+
+
+
+
+
+
+text = input("Введи рядок: ")
+
+# убираем пробелы и приводим к нижнему регистру
+clean = text.replace(" ", "").lower()
+
+if clean == clean[::-1]:
+    print("Це паліндром")
+else:
+    print("Це не паліндром")
+
+
+
+
+
+
+
+
+
+
+text = input("Введи текст: ")
+
+# список зарезервованих слів
+words = ["python", "java", "code"]
+
+for w in words:
+    text = text.replace(w, w.upper())
+
+print(text)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+text = input("Введи рядок: ")
+a = input("Перший символ: ")
+b = input("Другий символ: ")
+
+start = text.find(a)
+end = text.find(b)
+
+if start != -1 and end != -1 and start < end:
+    # удаляем часть строки
+    text = text[:start] + text[end+1:]
+
+print(text)
+
+
+
+
+
+
+
+
+
+
+
+
+text = input("Введи текст: ")
+symbols = input("Введи символи: ")
+
+words = text.split()
+result = []
+
+for word in words:
+    delete = False
+    for s in symbols:
+        if s in word:
+            delete = True
+    if not delete:
+        result.append(word)
+
+print(" ".join(result))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+text = input("Введи текст: ")
+
+words = text.split()
+
+# переворачиваем список слов
+words.reverse()
+
+print(" ".join(words))
