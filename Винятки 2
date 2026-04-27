@@ -1,0 +1,75 @@
+import math
+
+try:
+    num = float(input("Введіть число: "))
+
+    if num < 0:
+        raise Exception("Не можна обчислити квадратний корінь від'ємного числа")
+
+    result = math.sqrt(num)
+    print("Квадратний корінь:", result)
+
+except ValueError:
+    print("Помилка: введено не число")
+
+except Exception as e:
+    print("Помилка:", e)
+
+finally:
+    print("Обчислення завершено")
+
+
+
+
+
+
+
+
+
+
+    try:
+    data = input("Введіть товар (назва, ціна, кількість): ")
+
+    parts = data.split(",")
+
+    name = parts[0]
+    price = float(parts[1])
+    quantity = int(parts[2])
+
+    print("Назва:", name)
+    print("Ціна:", price)
+    print("Кількість:", quantity)
+
+except ValueError:
+    print("Помилка перетворення даних")
+
+finally:
+    print("Парсинг завершено")
+
+
+
+
+
+
+
+
+
+
+
+import random
+
+def connect_to_server():
+    if random.choice([True, False]):
+        return "Успішне підключення"
+    else:
+        raise ConnectionError("Помилка підключення")
+
+try:
+    result = connect_to_server()
+    print(result)
+
+except ConnectionError:
+    print("Не вдалося підключитися до сервера")
+
+finally:
+    print("Спробу завершено")
