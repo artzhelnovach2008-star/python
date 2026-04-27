@@ -1,0 +1,72 @@
+import random
+import string
+
+# -------- 1. Магический шар --------
+def magic_8_ball():
+    answers = [
+        "Да",
+        "Нет",
+        "Скорее да",
+        "Скорее нет",
+        "Спроси позже",
+        "Не уверен"
+    ]
+    
+    question = input("Задай вопрос: ")
+    print("Ответ:", random.choice(answers))
+
+
+# -------- 2. Генератор паролей --------
+def generate_password():
+    length = int(input("Длина пароля: "))
+    
+    symbols = string.ascii_letters + string.digits + "!@#$%^&*()"
+    
+    password = ""
+    for i in range(length):
+        password += random.choice(symbols)
+    
+    print("Твой пароль:", password)
+
+
+# -------- 3. Камень, ножницы, бумага --------
+def rock_paper_scissors():
+    choices = ["камень", "ножницы", "бумага"]
+    
+    user = input("Выбери (камень, ножницы, бумага): ").lower()
+    bot = random.choice(choices)
+    
+    print("Ты выбрал:", user)
+    print("Бот выбрал:", bot)
+    
+    if user == bot:
+        print("Ничья!")
+    elif (user == "камень" and bot == "ножницы") or \
+         (user == "ножницы" and bot == "бумага") or \
+         (user == "бумага" and bot == "камень"):
+        print("Ты победил!")
+    else:
+        print("Бот победил!")
+
+
+# -------- Меню --------
+while True:
+    print("\nВыбери действие:")
+    print("1 - Магический шар")
+    print("2 - Генератор паролей")
+    print("3 - Камень, ножницы, бумага")
+    print("0 - Выход")
+    
+    choice = input("Твой выбор: ")
+    
+    if choice == "1":
+        magic_8_ball()
+    elif choice == "2":
+        generate_password()
+    elif choice == "3":
+        rock_paper_scissors()
+    elif choice == "0":
+        print("Пока!")
+        break
+    else:
+        print("Неправильный ввод")
