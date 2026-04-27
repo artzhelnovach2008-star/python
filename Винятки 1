@@ -1,0 +1,61 @@
+try:
+    a = float(input("Введіть перше число: "))
+    b = float(input("Введіть друге число: "))
+
+    result = a / b
+    print("Результат:", result)
+
+except ValueError:
+    print("Помилка: введено не число")
+
+except ZeroDivisionError:
+    print("Помилка: не можна ділити на нуль")
+
+finally:
+    print("Операцію завершено")
+
+
+
+
+
+    numbers = [10, 20, 30, 40, 50]
+
+try:
+    index = int(input("Введіть індекс елемента: "))
+    print("Елемент списку:", numbers[index])
+
+except ValueError:
+    print("Помилка: індекс має бути числом")
+
+except IndexError:
+    print("Помилка: такого індексу немає у списку")
+
+finally:
+    print("Операцію завершено")
+
+
+
+
+
+
+
+
+
+    try:
+    data = input("Введіть продажі через пробіл: ")
+
+    numbers = data.split()
+    sales = []
+
+    for n in numbers:
+        sales.append(int(n))
+
+    total = sum(sales)
+
+    print("Загальна сума продажів:", total)
+
+except ValueError:
+    print("Помилка: неправильне введення")
+
+finally:
+    print("Обробку завершено")
