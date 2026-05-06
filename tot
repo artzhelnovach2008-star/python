@@ -1,0 +1,106 @@
+import asyncio
+from aiogram import Bot, Dispatcher, types
+from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from aiogram.utils import executor
+
+TOKEN = "ТВОЙ_ТОКЕН"
+
+bot = Bot(token=TOKEN)
+dp = Dispatcher(bot)
+
+board = [" "] * 9
+player_symbol = "X"
+bot_symbol = "O"
+
+
+def get_keyboard():
+    keyboard = InlineKeyboardMarkup(row_width=3)
+    buttons = []
+
+    for i in range(9):
+        text = board[i] if board[i] != " " else str(i)
+        buttons.append(InlineKeyboardButton(text, callback_data=str(i)))
+
+    keyboard.add(*buttons)
+    return keyboard
+
+
+def check_winner(symbol):
+    wins = [
+        [0,1,2],[3,4,5],[6,7,8],
+        [0,3,6],[1,4,7],[2,5,8],
+        [0,4,8],[2,4,6]
+    ]
+    for w in wins:
+        if all(board[i] == symbol for i in w):
+            return True
+    return False
+
+
+def bot_move():
+    for i in range(9):
+        if board[i] == " ":
+            board[i] = bot_symbol
+            break
+
+
+@dp.message_handler(commands=['start'])
+async def start(message: types.Message):
+    global board
+    board = [" "] * 9
+
+    keyboard = InlineKeyboardMarkup()
+    keyboard.add(
+        InlineKeyboardButton("X", callback_data="X"),
+        InlineKeyboardButton("O", callback_data="O"),
+    )
+
+    await message.answer("Выбери символ", reply_markup=keyboard)
+
+
+@dp.callback_query_handler(lambda c: c.data in ["X", "O"])
+async def choose(callback: types.CallbackQuery):
+    global player_symbol, bot_symbol
+
+    player_symbol = callback.data
+    bot_symbol = "O" if player_symbol == "X" else "X"
+
+    if bot_symbol == "X":
+        bot_move()
+
+    await callback.message.edit_text(
+        "Игра началась",
+        reply_markup=get_keyboard()
+    )
+
+
+@dp.callback_query_handler(lambda c: c.data.isdigit())
+async def play(callback: types.CallbackQuery):
+    global board
+
+    pos = int(callback.data)
+
+    if board[pos] != " ":
+        return
+
+    board[pos] = player_symbol
+
+    if check_winner(player_symbol):
+        await callback.message.edit_text("Победа игрока")
+        return
+
+    bot_move()
+
+    if check_winner(bot_symbol):
+        await callback.message.edit_text("Победа бота")
+        return
+
+    if " " not in board:
+        await callback.message.edit_text("Ничья")
+        return
+
+    await callback.message.edit_reply_markup(reply_markup=get_keyboard())
+
+
+if __name__ == "__main__":
+    executor.start_polling(dp)
